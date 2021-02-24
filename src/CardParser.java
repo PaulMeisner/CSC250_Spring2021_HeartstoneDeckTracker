@@ -57,20 +57,36 @@ public class CardParser
 	public void sortLowestCostToHighestCost()
 	{
 		theMinionsSorted = new ArrayList<HearthstoneCard>();
+		
+		for(int i = 0; i < this.theMinions.size(); i++)
+		{
+			this.theMinions.get(i).getCost();
+
+				if(this.theMinions.get(i).getCost() == 0)
+					{
+					theMinionsSorted.add(theMinions.get(i));
+					}
+				this.theMinions.remove(i);
+
+		}
+		
 		for(int i = 0; i < this.theMinions.size(); i++)
 			{
 			this.theMinions.get(i).getCost();
+	
 				if(this.theMinions.get(i).getCost() == 1)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+				
+					//this.theMinions.remove(i);
+
 			}
-		
+			
 		for(int i = 0; i < this.theMinions.size(); i++)
 			{
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 2)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+				//	this.theMinions.remove(i);
 			}
 		
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -78,7 +94,7 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 3)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 	
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -86,7 +102,7 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 4)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 		
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -94,7 +110,7 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 5)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 	
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -102,7 +118,7 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 6)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 		
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -110,7 +126,7 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 7)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 	
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -118,15 +134,15 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 8)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+					//this.theMinions.remove(i);
 			}
 		
 		for(int i = 0; i < this.theMinions.size(); i++)
 			{
-				this.theMinions.get(i).getCost();
-					if(this.theMinions.get(i).getCost() == 9)
-						theMinionsSorted.add(theMinions.get(i));
-						this.theMinions.remove(i);
+			this.theMinions.get(i).getCost();
+				if(this.theMinions.get(i).getCost() == 9)
+					theMinionsSorted.add(theMinions.get(i));
+					//this.theMinions.remove(i);
 			}
 	
 		for(int i = 0; i < this.theMinions.size(); i++)
@@ -134,15 +150,14 @@ public class CardParser
 			this.theMinions.get(i).getCost();
 				if(this.theMinions.get(i).getCost() == 10)
 					theMinionsSorted.add(theMinions.get(i));
-					this.theMinions.remove(i);
+				//	this.theMinions.remove(i);
 			}
 		
 		for(int i = 0; i < this.theMinionsSorted.size(); i++)
 			{
 			this.theMinionsSorted.get(i).display();
 			}
-				
-		
+	
 			
 				
 			//System.out.println("The Sort 0 is:" + theMinionsSort);
