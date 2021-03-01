@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import java.util.Collections;
 
 public class CardParser 
 {
@@ -52,117 +53,117 @@ public class CardParser
 		}
 	}
 	
+	public void insertionSortLowestToHighestCost() 
+	{
+		for(int currStart =1; currStart < this.theMinions.size(); currStart++)
+		{
+					//try to move valuee at currstart as far up the array as possible
+					//then move on to the next currstart
+			
+			HearthstoneCard temp;
+			int currIndex = currStart;
+			while(currIndex > 0 && this.theMinions.get(currIndex).getCost() < this.theMinions.get(currIndex-1).getCost())
+			{
+				//we swap the 2 places
+				temp = this.theMinions.get(currIndex);
+				this.theMinions.set(currIndex, this.theMinions.get(currIndex-1));
+				this.theMinions.set(currIndex-1, temp);
+				currIndex--;
+			}
+		}
+	}
 	
-	private ArrayList<HearthstoneCard> theMinionsSorted;
+
 	public void sortLowestCostToHighestCost()
 	{
-		theMinionsSorted = new ArrayList<HearthstoneCard>();
-		
-		for(int i = 0; i < this.theMinions.size(); i++)
+		ArrayList<HearthstoneCard> theSortedList = new ArrayList<HearthstoneCard>();
+		HearthstoneCard nextSmallest;
+		while(this.theMinions.size() > 0)
 		{
-			this.theMinions.get(i).getCost();
-
-				if(this.theMinions.get(i).getCost() == 0)
+			nextSmallest = this.findSmallest();
+			theSortedList.add(nextSmallest);
+		}
+		this.theMinions = theSortedList;
+	}
+	
+	private HearthstoneCard findSmallest()
+	{
+		//is to go through the current state of theminions and remove and return the card with the smallest value
+		
+		HearthstoneCard currWinner = this.theMinions.get(0);
+		int indexOfWinner = 0;
+		
+		for(int i = 1; i < this.theMinions.size(); i++)
+		{
+			if(this.theMinions.get(i).getCost() < currWinner.getCost())
+			{
+				currWinner = this.theMinions.get(i);
+				indexOfWinner = i;
+			}
+		}
+		this.theMinions.remove(indexOfWinner);
+		return currWinner;
+	}
+	
+	public void SelectionSortHighestToLowestCost() 
+	{
+		
+		/*
+		 * inital idea:
+		 * create two loops that each go through the array and compare cost of minions to each other
+		 * if cost of minion in loop one is greater than cost of  minmion in loop two, keep comparing the cost of minion in loop 1 with minions in  loop 2
+		 */
+	
+		for(int currStart =1; currStart < this.theMinions.size(); currStart++)
+		{
+			for(int currSecond  = currStart +1; currSecond < this.theMinions.size(); currSecond++)
+			{
+				int currIndex = currStart;
+				HearthstoneCard temp;
+				if(this.theMinions.get(currStart).getCost() > this.theMinions.get(currSecond).getCost())
+				{
+					temp = this.theMinions.get(currStart);
+					while(currIndex > 0 && temp.getCost() > this.theMinions.get(currSecond).getCost())
 					{
-					theMinionsSorted.add(theMinions.get(i));
+						temp = this.theMinions.get(currIndex);
+						this.theMinions.set(currIndex, this.theMinions.get(currIndex-1));
+						this.theMinions.set(currIndex-1, temp);
+						currIndex--;
 					}
-				this.theMinions.remove(i);
-
+				}
+				else
+				{
+					if(this.theMinions.get(currStart).getCost() < this.theMinions.get(currSecond).getCost())
+					{
+						temp = this.theMinions.get(currSecond);
+						while(currIndex > 0 && temp.getCost() > this.theMinions.get(currStart).getCost())
+						{
+							temp = this.theMinions.get(currIndex);
+							this.theMinions.set(currIndex, this.theMinions.get(currIndex-1));
+							this.theMinions.set(currIndex-1, temp);
+							currIndex--;
+						}
+					}
+				}
+		
+			}
 		}
 		
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-	
-				if(this.theMinions.get(i).getCost() == 1)
-					theMinionsSorted.add(theMinions.get(i));
-				
-					//this.theMinions.remove(i);
-
-			}
-			
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 2)
-					theMinionsSorted.add(theMinions.get(i));
-				//	this.theMinions.remove(i);
-			}
 		
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 3)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-	
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 4)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-		
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 5)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-	
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 6)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-		
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 7)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-	
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 8)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-		
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 9)
-					theMinionsSorted.add(theMinions.get(i));
-					//this.theMinions.remove(i);
-			}
-	
-		for(int i = 0; i < this.theMinions.size(); i++)
-			{
-			this.theMinions.get(i).getCost();
-				if(this.theMinions.get(i).getCost() == 10)
-					theMinionsSorted.add(theMinions.get(i));
-				//	this.theMinions.remove(i);
-			}
-		
-		for(int i = 0; i < this.theMinionsSorted.size(); i++)
-			{
-			this.theMinionsSorted.get(i).display();
-			}
+	}
+}
 	
 			
 				
-			//System.out.println("The Sort 0 is:" + theMinionsSort);
-		}
+
+	            	
+	            	
 		
+	
+
+		
+		
+
 		//this methods job is to take our ArrayList of minions and re-arrange it so that
 		//it is in the order of cards with the lowest cost first, and cards with the highest
 		//cost last.
@@ -170,4 +171,4 @@ public class CardParser
 		//Note: this.theMinions.remove(3) will remove the card that used to be at bucket 3
 		//you will need to cobble together your own algorithm for getting this arraylist sorted
 		
-	}
+	
