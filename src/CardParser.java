@@ -85,29 +85,29 @@ public class CardParser
 		
 	}
 	
-	public int executeBinarySearch(int Attack)
+	public int executeBinarySearch(int attack)
 	{
-		for(int i = 0; i < this.theMinions.size(); i++) 
-		{
+
 		this.insertionSortLowestAttackToHighestAttack();
-		this.binarySearch();
-		}
+		int index = binarySearch();
 		
-		return Attack;
+		return index;
+	
+		
 	}
 	
 	//does binary search needs to take in int attack?
 	 private int binarySearch()
 	{
-		int begin = 0;
-		int end = theMinions.size()-1;
+		int leftSide = 0;
+		int rightSide = theMinions.size()-1;
 		int middle;
 		//execute at least one time
 		// make sure the loop executes at least once
 		do
 		{
 		
-			middle = (begin + end)/2;
+			middle = (leftSide + rightSide)/2;
 			//if this is middle and middle is val that wee are looking for, return middle as  answer
 			
 			
@@ -119,14 +119,14 @@ public class CardParser
 			//if what we are looking for is at left half, update end
 			else if(this.theMinions.get(middle).getAttack() < middle) //this.theMinions[middle].getAttack()
 			{
-				end = middle - 1;
+				rightSide = middle - 1;
 			}
 			else
 			{
-				begin = middle + 1;
+				leftSide = middle + 1;
 			}
 		}	
-		while(begin <= end);
+		while(leftSide <= rightSide);
 		return -1;
 	
 	}
@@ -152,6 +152,7 @@ public class CardParser
 				
 			}	
 		}
+	
 	}
 	//for homework, this sorts my array from lowest att to highest att
 	public void sortLowestAttackToHighestAttack()
