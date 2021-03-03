@@ -85,19 +85,25 @@ public class CardParser
 		
 	}
 	
-	public class executeBinarySearch
+	public int executeBinarySearch(int Attack)
 	{
+		for(int i = 0; i < this.theMinions.size(); i++) 
+		{
+		this.insertionSortLowestAttackToHighestAttack();
+		this.binarySearch(8);
+		}
+		
 		//need to call my sort attack function
 		//need to call my binary search function
+		return Attack;
 	}
 	
 	//how do I take in my minions array?
-	 private int binarySearch(int[] theMinions, int attack)
+	 private int binarySearch(int attack)
 	{
 		int begin = 0;
-		int end = theMinions.length-1;
+		int end = theMinions.size()-1;
 		int middle;
-		
 		//execute at least one time
 		// make sure the loop executes at least one since  using boolean expres
 		do
@@ -106,12 +112,14 @@ public class CardParser
 			middle = (begin + end)/2;
 			//if this is middle and middle is val that wee are looking for, return middle as  answer
 			
-			if(theMinions[middle] == attack)
+			
+			//how do I write this as an array type, or so that iw works???
+			if(this.theMinions[middle].getAttack() == middle)
 			{
 				return middle;
-			}
+			}zoom
 			//if what we are looking for is at left half, update end
-			else if(attack < theMinions[middle])
+			else if(this.theMinions[middle]getAttack() < middle)
 			{
 				end = middle - 1;
 			}
